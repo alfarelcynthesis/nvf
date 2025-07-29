@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib.modules) mkRenamedOptionModule;
   inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.nvim.types) luaInline;
