@@ -1,4 +1,4 @@
-{lib, ...}: let
+{config, lib, ...}: let
   inherit (lib.options) mkEnableOption;
   inherit (lib.nvim.binds) mkMappingOption;
 in {
@@ -11,64 +11,64 @@ in {
 
     mappings = {
       goToDefinition =
-        mkMappingOption "Go to definition"
+        mkMappingOption config.vim.enableNvfKeymaps "Go to definition"
         "<leader>lgd";
       goToDeclaration =
-        mkMappingOption "Go to declaration"
+        mkMappingOption config.vim.enableNvfKeymaps "Go to declaration"
         "<leader>lgD";
       goToType =
-        mkMappingOption "Go to type"
+        mkMappingOption config.vim.enableNvfKeymaps "Go to type"
         "<leader>lgt";
       listImplementations =
-        mkMappingOption "List implementations"
+        mkMappingOption config.vim.enableNvfKeymaps "List implementations"
         "<leader>lgi";
       listReferences =
-        mkMappingOption "List references"
+        mkMappingOption config.vim.enableNvfKeymaps "List references"
         "<leader>lgr";
       nextDiagnostic =
-        mkMappingOption "Go to next diagnostic"
+        mkMappingOption config.vim.enableNvfKeymaps "Go to next diagnostic"
         "<leader>lgn";
       previousDiagnostic =
-        mkMappingOption "Go to previous diagnostic"
+        mkMappingOption config.vim.enableNvfKeymaps "Go to previous diagnostic"
         "<leader>lgp";
       openDiagnosticFloat =
-        mkMappingOption "Open diagnostic float"
+        mkMappingOption config.vim.enableNvfKeymaps "Open diagnostic float"
         "<leader>le";
       documentHighlight =
-        mkMappingOption "Document highlight"
+        mkMappingOption config.vim.enableNvfKeymaps "Document highlight"
         "<leader>lH";
       listDocumentSymbols =
-        mkMappingOption "List document symbols"
+        mkMappingOption config.vim.enableNvfKeymaps "List document symbols"
         "<leader>lS";
       addWorkspaceFolder =
-        mkMappingOption "Add workspace folder"
+        mkMappingOption config.vim.enableNvfKeymaps "Add workspace folder"
         "<leader>lwa";
       removeWorkspaceFolder =
-        mkMappingOption "Remove workspace folder"
+        mkMappingOption config.vim.enableNvfKeymaps "Remove workspace folder"
         "<leader>lwr";
       listWorkspaceFolders =
-        mkMappingOption "List workspace folders"
+        mkMappingOption config.vim.enableNvfKeymaps "List workspace folders"
         "<leader>lwl";
       listWorkspaceSymbols =
-        mkMappingOption "List workspace symbols"
+        mkMappingOption config.vim.enableNvfKeymaps "List workspace symbols"
         "<leader>lws";
       hover =
-        mkMappingOption "Trigger hover"
+        mkMappingOption config.vim.enableNvfKeymaps "Trigger hover"
         "<leader>lh";
       signatureHelp =
-        mkMappingOption "Signature help"
+        mkMappingOption config.vim.enableNvfKeymaps "Signature help"
         "<leader>ls";
       renameSymbol =
-        mkMappingOption "Rename symbol"
+        mkMappingOption config.vim.enableNvfKeymaps "Rename symbol"
         "<leader>ln";
       codeAction =
-        mkMappingOption "Code action"
+        mkMappingOption config.vim.enableNvfKeymaps "Code action"
         "<leader>la";
       format =
-        mkMappingOption "Format"
+        mkMappingOption config.vim.enableNvfKeymaps "Format"
         "<leader>lf";
       toggleFormatOnSave =
-        mkMappingOption "Toggle format on save"
+        mkMappingOption config.vim.enableNvfKeymaps "Toggle format on save"
         "<leader>ltf";
     };
   };
