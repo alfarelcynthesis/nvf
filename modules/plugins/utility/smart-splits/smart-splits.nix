@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib.options) mkOption;
   inherit (lib.types) bool;
   inherit (lib.nvim.types) mkPluginSetupOption;

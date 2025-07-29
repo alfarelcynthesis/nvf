@@ -1,4 +1,8 @@
-{lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.nvim.binds) mkMappingOption;
   inherit (lib.types) bool str listOf;
