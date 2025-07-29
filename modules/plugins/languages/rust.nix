@@ -141,62 +141,73 @@ in {
       vim = {
         startPlugins = ["rustaceanvim"];
 
-        pluginRC.rustaceanvim = entryAfter ["lsp-setup"] ''
-          vim.g.rustaceanvim = {
-          ${optionalString cfg.lsp.enable ''
-            -- LSP
-            tools = {
-              hover_actions = {
-                replace_builtin_hover = false
-              },
-            },
-            server = {
-              cmd = ${
-              if isList cfg.lsp.package
-              then expToLua cfg.lsp.package
-              else ''{"${cfg.lsp.package}/bin/rust-analyzer"}''
-            },
-              default_settings = {
-                ${cfg.lsp.opts}
-              },
-              on_attach = function(client, bufnr)
-                default_on_attach(client, bufnr)
-                local opts = { noremap=true, silent=true, buffer = bufnr }
-                vim.keymap.set("n", "<localleader>rr", ":RustLsp runnables<CR>", opts)
-                vim.keymap.set("n", "<localleader>rp", ":RustLsp parentModule<CR>", opts)
-                vim.keymap.set("n", "<localleader>rm", ":RustLsp expandMacro<CR>", opts)
-                vim.keymap.set("n", "<localleader>rc", ":RustLsp openCargo", opts)
-                vim.keymap.set("n", "<localleader>rg", ":RustLsp crateGraph x11", opts)
-                ${optionalString cfg.dap.enable ''
-              vim.keymap.set("n", "<localleader>rd", ":RustLsp debuggables<cr>", opts)
-              vim.keymap.set(
-               "n", "${config.vim.debugger.nvim-dap.mappings.continue}",
-               function()
-                 local dap = require("dap")
-                 if dap.status() == "" then
-                   vim.cmd "RustLsp debuggables"
-                 else
-                   dap.continue()
-                 end
-               end,
-               opts
-              )
-            ''}
-              end
-            },
-          ''}
+        pluginRC.rustaceanvim =
+          entryAfter ["lsp-setup"]
+          # lua
+          ''
+            vim.g.rustaceanvim = {
+            ${optionalString cfg.lsp.enable
+              # lua
+              ''
+                -- LSP
+                tools = {
+                  hover_actions = {
+                    replace_builtin_hover = false
+                  },
+                },
+                server = {
+                  cmd = ${
+                  if isList cfg.lsp.package
+                  then expToLua cfg.lsp.package
+                  else ''{"${cfg.lsp.package}/bin/rust-analyzer"}''
+                },
+                  default_settings = {
+                    ${cfg.lsp.opts}
+                  },
+                  ${optionalString config.vim.enableNvfKeymaps
+                  # lua
+                  ''
+                    on_attach = function(client, bufnr)
+                      default_on_attach(client, bufnr)
+                      local opts = { noremap=true, silent=true, buffer = bufnr }
+                      vim.keymap.set("n", "<localleader>rr", ":RustLsp runnables<CR>", opts)
+                      vim.keymap.set("n", "<localleader>rp", ":RustLsp parentModule<CR>", opts)
+                      vim.keymap.set("n", "<localleader>rm", ":RustLsp expandMacro<CR>", opts)
+                      vim.keymap.set("n", "<localleader>rc", ":RustLsp openCargo", opts)
+                      vim.keymap.set("n", "<localleader>rg", ":RustLsp crateGraph x11", opts)
+                      ${optionalString cfg.dap.enable
+                      # lua
+                      ''
+                        vim.keymap.set("n", "<localleader>rd", ":RustLsp debuggables<cr>", opts)
+                        vim.keymap.set(
+                          "n", "${config.vim.debugger.nvim-dap.mappings.continue}",
+                          function()
+                            local dap = require("dap")
+                            if dap.status() == "" then
+                              vim.cmd "RustLsp debuggables"
+                            else
+                              dap.continue()
+                            end
+                          end,
+                          opts
+                        )
+                      ''}
+                  ''}
+                  end
+                },
+              ''}
 
-            ${optionalString cfg.dap.enable ''
-            dap = {
-              adapter = {
-                type = "executable",
-                command = "${cfg.dap.package}/bin/lldb-dap",
-                name = "rustacean_lldb",
+              ${optionalString cfg.dap.enable ''
+              dap = {
+                adapter = {
+                  type = "executable",
+                  command = "${cfg.dap.package}/bin/lldb-dap",
+                  name = "rustacean_lldb",
+                },
               },
-            },
-          ''}
-          }
-        '';
+            ''}
+            }
+          '';
       };
     })
   ]);
