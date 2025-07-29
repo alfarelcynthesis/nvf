@@ -43,7 +43,7 @@ isMaximal: {
     # This section does not include a comprehensive list of available language modules.
     # To list all available language module options, please visit the nvf manual.
     languages = {
-      enableFormat = true; #
+      enableFormat = true;
       enableTreesitter = true;
       enableExtraDiagnostics = true;
 
@@ -155,7 +155,6 @@ isMaximal: {
     binds = {
       whichKey.enable = true;
       cheatsheet.enable = true;
-      hardtime-nvim.enable = isMaximal;
     };
 
     telescope.enable = true;
@@ -195,6 +194,8 @@ isMaximal: {
       leetcode-nvim.enable = isMaximal;
       multicursors.enable = isMaximal;
       smart-splits.enable = isMaximal;
+      undotree.enable = isMaximal;
+      nvim-biscuits.enable = isMaximal;
 
       motion = {
         hop.enable = true;
