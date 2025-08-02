@@ -39,7 +39,7 @@
       warn = true;
       use = x:
         warn
-        "Obsolete option `vim.languages.${lang}.lsp.server` used, use `${lang}.lsp.servers` instead."
+        "Obsolete option `vim.languages.${lang}.lsp.server` used, use `vim.languages.${lang}.lsp.servers` instead."
         (head x);
     };
 in {
