@@ -483,9 +483,11 @@
 [Cool-Game-Dev](https://github.com/Cool-Game-Dev):
 
 [nvim-biscuits]: https://github.com/code-biscuits/nvim-biscuits
+[just-lsp]: https://github.com/terror/just-lsp
 
 - Add [nvim-biscuits] to show block context. Available at
   `vim.utility.nvim-biscuits`.
+- Add just support under `vim.languages.just` using [just-lsp].
 
 [JManch](https://github.com/JManch):
 
