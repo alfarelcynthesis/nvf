@@ -68,18 +68,16 @@ in {
       enableSharedCmpSources = true;
       blink-cmp.setupOpts = {
         sources = let
-          defaultBlinkSources = [
-            "lsp"
-            "path"
-            "snippets"
-            "buffer"
-          ];
-
-          # We do not want nvim-cmp compat sources overriding default blink sources
-          filteredCmpSources = removeAttrs cmpCfg.sources defaultBlinkSources;
+          # We do not want nvim-cmp compat sources overriding built-in blink sources
+          filteredCmpSources = removeAttrs cmpCfg.sources blinkBuiltins;
         in {
           default =
-            defaultBlinkSources
+            [
+              "lsp"
+              "path"
+              "snippets"
+              "buffer"
+            ]
             ++ optionals cmpCfg.enable (attrNames filteredCmpSources)
             ++ (attrNames enabledBlinkSources);
           providers =
