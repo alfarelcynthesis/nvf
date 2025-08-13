@@ -389,9 +389,12 @@
 [poz](https://poz.pet):
 
 [everforest]: https://github.com/sainnhe/everforest
+[oil]: https://github.com/stevearc/oil.nvim
+[oil-git-status]: https://github.com/refractalize/oil-git-status.nvim
 
 - Fix gitsigns null-ls issue.
 - Add [everforest] theme support.
+- Add [oil-git-status] support to [oil] module.
 
 [Haskex](https://github.com/haskex):
 
@@ -484,6 +487,9 @@
 
 [nvim-biscuits]: https://github.com/code-biscuits/nvim-biscuits
 [just-lsp]: https://github.com/terror/just-lsp
+[roslyn-ls]: https://github.com/dotnet/vscode-csharp
+[jsonls]: https://github.com/microsoft/vscode/tree/1.101.2/extensions/json-language-features/server
+[jsonfmt]: https://github.com/caarlos0/jsonfmt
 
 - Add [nvim-biscuits] to show block context. Available at
   `vim.utility.nvim-biscuits`.
@@ -494,3 +500,7 @@
 - Fix default [blink.cmp] sources "path" and "buffer" not working when
   `autocomplete.nvim-cmp.enable` was disabled and
   `autocomplete.nvim-cmp.sources` had not been modified.
+
+- Add [roslyn-ls] to the `vim.languages.csharp` module.
+
+- Added json support under `vim.languages.json` using [jsonls] and [jsonfmt].
