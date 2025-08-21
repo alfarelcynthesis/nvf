@@ -89,6 +89,7 @@ isMaximal: {
       ruby.enable = false;
       fsharp.enable = false;
       just.enable = false;
+      qml.enable = false;
 
       tailwind.enable = false;
       svelte.enable = false;
@@ -191,6 +192,7 @@ isMaximal: {
       vim-wakatime.enable = false;
       diffview-nvim.enable = true;
       yanky-nvim.enable = false;
+      qmk-nvim.enable = false; # requires hardware specific options
       icon-picker.enable = isMaximal;
       surround.enable = isMaximal;
       leetcode-nvim.enable = isMaximal;

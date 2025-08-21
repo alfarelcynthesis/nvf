@@ -319,6 +319,7 @@
 - Add global function `nvf_lint` under
   `vim.diagnostics.nvim-lint.lint_function`.
 - Deprecate `vim.scrollOffset` in favor of `vim.options.scrolloff`.
+- Fix `svelte-language-server` not reloading .js/.ts files on change.
 
 [Sc3l3t0n](https://github.com/Sc3l3t0n):
 
@@ -501,6 +502,23 @@
   `autocomplete.nvim-cmp.enable` was disabled and
   `autocomplete.nvim-cmp.sources` had not been modified.
 
-- Add [roslyn-ls] to the `vim.languages.csharp` module.
+[Cool-Game-Dev](https://github.com/Cool-Game-Dev):
 
-- Added json support under `vim.languages.json` using [jsonls] and [jsonfmt].
+[just-lsp]: https://github.com/terror/just-lsp
+[roslyn-ls]: https://github.com/dotnet/vscode-csharp
+[jsonls]: https://github.com/microsoft/vscode/tree/1.101.2/extensions/json-language-features/server
+[jsonfmt]: https://github.com/caarlos0/jsonfmt
+[superhtml]: https://github.com/kristoff-it/superhtml
+[htmlHINT]: https://github.com/htmlhint/HTMLHint
+[qmk-nvim]: https://github.com/codethread/qmk.nvim
+[qmlls]: https://doc.qt.io/qt-6/qtqml-tooling-qmlls.html
+[qmlformat]: https://doc.qt.io/qt-6/qtqml-tooling-qmlformat.html
+
+- Add just support under `vim.languages.just` using [just-lsp].
+- Add [roslyn-ls] to the `vim.languages.csharp` module.
+- Add JSON support under `vim.languages.json` using [jsonls] and [jsonfmt].
+- Add advanced HTML support under `vim.languages.html` using [superhtml] and
+  [htmlHINT].
+- Add QMK support under `vim.utility.qmk-nvim` via [qmk-nvim].
+- Add QML support under `vim.languages.qml` using [qmlls] and [qmlformat]
+>>>>>>> v0.8
