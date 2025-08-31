@@ -111,6 +111,11 @@
 - Add [hunk.nvim], Neovim plugin & tool for splitting diffs in Neovim. Available
   as `vim.git.hunk-nvim`
 
+[sjcobb2022](https://github.com/sjcobb2022):
+
+- Migrate all current lsp configurations to `vim.lsp.server` and remove internal
+  dependency on `nvim-lspconfig`
+
 [amadaluzia](https://github.com/amadaluzia):
 
 [haskell-tools.nvim]: https://github.com/MrcJkb/haskell-tools.nvim
@@ -523,3 +528,19 @@
 [diced](https://github.com/diced):
 
 - Fixed `typescript` treesitter grammar not being included by default.
+
+[valterschutz](https://github.com/valterschutz):
+
+[ruff]: (https://github.com/astral-sh/ruff)
+
+- Add [ruff-fix] as a formatter option in `vim.languages.python.format.type`.
+
+[gmvar](https://github.com/gmvar):
+
+[harper-ls]: https://github.com/Automattic/harper
+
+- Add [harper-ls] to the `vim.lsp` module.
+
+[derethil](https://github.com/derethil):
+
+- Fix `vim.lazy.plugins.<name>.enabled` Lua evaluation.
