@@ -23,6 +23,14 @@
       filetypes = ["markdown" "markdown.mdx"];
       root_markers = [".marksman.toml" ".git"];
     };
+
+    markdown-oxide = {
+      enable = true;
+      cmd = [(getExe pkgs.markdown-oxide)];
+      filetypes = ["markdown"];
+      root_markers = [".git" ".obsidian" ".moxide.toml"];
+      on_attach = "default_on_attach";
+    };
   };
 
   defaultFormat = "deno_fmt";
