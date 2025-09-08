@@ -293,6 +293,8 @@
   YAML diagnostics will now remain in `helmfile`s when both are enabled.
 - Fix YAML language module not activating LSP keybinds
   if the Helm language module was also enabled.
+- Add [markdown-oxide](https://github.com/Feel-ix-343/markdown-oxide)
+  option to markdown language module.
 
 [TheColorman](https://github.com/TheColorman):
 
