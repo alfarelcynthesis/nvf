@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (builtins) attrNames;
-  inherit (lib.generators) mkLuaInline;
   inherit (lib.meta) getExe;
   inherit (lib.modules) mkIf mkMerge;
   inherit (lib.options) mkEnableOption mkOption;
@@ -30,7 +29,6 @@
       cmd = [(getExe pkgs.markdown-oxide)];
       filetypes = ["markdown"];
       root_markers = [".git" ".obsidian" ".moxide.toml"];
-      on_attach = "default_on_attach";
     };
   };
 
