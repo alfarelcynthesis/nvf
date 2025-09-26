@@ -7,6 +7,7 @@ default.extend-ignore-words-re = [
   "viw",
   "edn",
   "esy",
+  "typ",
   "BA", # somehow "BANanaD3V" is valid, but BA is not...
 ]
 
