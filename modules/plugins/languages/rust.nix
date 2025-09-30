@@ -168,7 +168,6 @@ in {
                   # lua
                   ''
                     on_attach = function(client, bufnr)
-                      default_on_attach(client, bufnr)
                       local opts = { noremap=true, silent=true, buffer = bufnr }
                       vim.keymap.set("n", "<localleader>rr", ":RustLsp runnables<CR>", opts)
                       vim.keymap.set("n", "<localleader>rp", ":RustLsp parentModule<CR>", opts)
