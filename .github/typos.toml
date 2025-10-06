@@ -5,9 +5,9 @@ default.extend-ignore-words-re = [
   "befores",
   "annote",
   "viw",
+  "typ",
   "edn",
   "esy",
-  "typ",
   "BA", # somehow "BANanaD3V" is valid, but BA is not...
 ]
 

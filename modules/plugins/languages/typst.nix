@@ -3,28 +3,38 @@
   pkgs,
   lib,
   ...
-}: let
-  inherit (lib.options) mkEnableOption mkOption;
+}:
+let
+  inherit (lib.options) mkOption mkEnableOption;
   inherit (lib.modules) mkIf mkMerge;
-  inherit (lib.types) nullOr enum attrsOf listOf package str bool int;
+  inherit (lib.types)
+    nullOr
+    enum
+    attrsOf
+    listOf
+    package
+    str
+    bool
+    int
+    ;
   inherit (lib.attrsets) attrNames;
   inherit (lib.meta) getExe;
-  inherit (lib.nvim.binds) mkMappingOption mkKeymap;
   inherit (lib.nvim.types) mkGrammarOption mkPluginSetupOption singleOrListOf;
   inherit (lib.nvim.dag) entryAnywhere;
   inherit (lib.nvim.lua) toLuaObject;
   inherit (lib.nvim.attrsets) mapListToAttrs;
+  inherit (lib.nvim.binds) mkKeymap mkMappingOption;
   inherit (lib.generators) mkLuaInline;
 
   cfg = config.vim.languages.typst;
 
-  defaultServers = ["tinymist"];
+  defaultServers = [ "tinymist" ];
   servers = {
     typst_lsp = {
       enable = true;
-      cmd = [(getExe pkgs.typst-lsp)];
-      filetypes = ["typst"];
-      root_markers = [".git"];
+      cmd = [ (getExe pkgs.typst-lsp) ];
+      filetypes = [ "typst" ];
+      root_markers = [ ".git" ];
       on_attach = mkLuaInline ''
         function(client, bufnr)
           -- Disable semantic tokens as a workaround for a semantic token error when using non-english characters
@@ -35,9 +45,9 @@
 
     tinymist = {
       enable = true;
-      cmd = [(getExe pkgs.tinymist)];
-      filetypes = ["typst"];
-      root_markers = [".git"];
+      cmd = [ (getExe pkgs.tinymist) ];
+      filetypes = [ "typst" ];
+      root_markers = [ ".git" ];
       on_attach = mkLuaInline ''
         function(client, bufnr)
           local function create_tinymist_command(command_name, client, bufnr)
@@ -102,17 +112,22 @@
       package = pkgs.typstyle;
     };
   };
-in {
+in
+{
   options.vim.languages.typst = {
     enable = mkEnableOption "Typst language support";
 
     treesitter = {
-      enable = mkEnableOption "Typst treesitter" // {default = config.vim.languages.enableTreesitter;};
+      enable = mkEnableOption "Typst treesitter" // {
+        default = config.vim.languages.enableTreesitter;
+      };
       package = mkGrammarOption pkgs "typst";
     };
 
     lsp = {
-      enable = mkEnableOption "Typst LSP support (typst-lsp)" // {default = config.vim.lsp.enable;};
+      enable = mkEnableOption "Typst LSP support (typst-lsp)" // {
+        default = config.vim.lsp.enable;
+      };
 
       servers = mkOption {
         type = singleOrListOf (enum (attrNames servers));
@@ -122,7 +137,9 @@ in {
     };
 
     format = {
-      enable = mkEnableOption "Typst document formatting" // {default = config.vim.languages.enableFormat;};
+      enable = mkEnableOption "Typst document formatting" // {
+        default = config.vim.languages.enableFormat;
+      };
 
       type = mkOption {
         type = enum (attrNames formats);
@@ -145,7 +162,9 @@ in {
 
             Low latency typst preview for Neovim via [typst-preview.nvim]
           ''
-          // {default = true;};
+          // {
+            default = true;
+          };
 
         setupOpts = mkPluginSetupOption "typst-preview-nvim" {
           open_cmd = mkOption {
@@ -174,7 +193,10 @@ in {
           extra_args = mkOption {
             type = nullOr (listOf str);
             default = null;
-            example = ["--input=ver=draft" "--ignore-system-fonts"];
+            example = [
+              "--input=ver=draft"
+              "--ignore-system-fonts"
+            ];
             description = "A list of extra arguments (or `null`) to be passed to previewer";
           };
         };
@@ -208,7 +230,11 @@ in {
             description = "Should typst-concealer conceal newly opened buffers by default?";
           };
           styling_type = mkOption {
-            type = nullOr (enum ["simple" "none" "colorscheme"]);
+            type = nullOr (enum [
+              "simple"
+              "none"
+              "colorscheme"
+            ]);
             default = null;
             description = "What kind of styling should typst-concealer apply to your typst?";
           };
@@ -235,13 +261,13 @@ in {
   config = mkIf cfg.enable (mkMerge [
     (mkIf cfg.treesitter.enable {
       vim.treesitter.enable = true;
-      vim.treesitter.grammars = [cfg.treesitter.package];
+      vim.treesitter.grammars = [ cfg.treesitter.package ];
     })
 
     (mkIf cfg.format.enable {
       vim.formatter.conform-nvim = {
         enable = true;
-        setupOpts.formatters_by_ft.typst = [cfg.format.type];
+        setupOpts.formatters_by_ft.typst = [ cfg.format.type ];
         setupOpts.formatters.${cfg.format.type} = {
           command = getExe cfg.format.package;
         };
@@ -249,17 +275,15 @@ in {
     })
 
     (mkIf cfg.lsp.enable {
-      vim.lsp.servers =
-        mapListToAttrs (n: {
-          name = n;
-          value = servers.${n};
-        })
-        cfg.lsp.servers;
+      vim.lsp.servers = mapListToAttrs (n: {
+        name = n;
+        value = servers.${n};
+      }) cfg.lsp.servers;
     })
 
     # Extensions
     (mkIf cfg.extensions.typst-preview-nvim.enable {
-      vim.startPlugins = ["typst-preview-nvim"];
+      vim.startPlugins = [ "typst-preview-nvim" ];
       vim.pluginRC.typst-preview-nvim = entryAnywhere ''
         require("typst-preview").setup(${toLuaObject cfg.extensions.typst-preview-nvim.setupOpts})
       '';
@@ -273,7 +297,10 @@ in {
         setupOpts = cfg.extensions.typst-concealer.setupOpts;
 
         keys = [
-          (mkKeymap "n" cfg.extensions.typst-concealer.mappings.toggleConcealing "<cmd>lua require('typst-concealer').toggle_buf()<CR>" {desc = "Toggle typst-concealer in buffer";})
+          (mkKeymap "n" cfg.extensions.typst-concealer.mappings.toggleConcealing
+            "<cmd>lua require('typst-concealer').toggle_buf()<CR>"
+            { desc = "Toggle typst-concealer in buffer"; }
+          )
         ];
       };
     })
