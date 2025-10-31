@@ -34,12 +34,12 @@ in {
     '';
   in [
     (mkRemovedOptionModule ["vim" "notes" "obsidian" "dir"] removedSingleDirInstructions)
-    (mkRemovedOptionModule (setupPath ++ ["dir"]) removedSingleDirInstructions)
-    (mkRemovedOptionModule (setupPath ++ ["mappings"]) ''
-      Some individual mappings have separate options.
-      Use exposed `Obsidian` commands and the standard keymaps API for others.
-    '')
     # TODO: are these useful?
+    # (mkRemovedOptionModule (setupPath ++ ["dir"]) removedSingleDirInstructions)
+    # (mkRemovedOptionModule (setupPath ++ ["mappings"]) ''
+    #   Some individual mappings have separate options.
+    #   Use exposed `Obsidian` commands and the standard keymaps API for others.
+    # '')
     # (mkRemovedOptionModule (setupPath ++ ["open_app_foreground"]) "Removed upstream.")
 
     (renamedSetupOption ["daily-notes" "folder"] ["daily_notes" "folder"])
