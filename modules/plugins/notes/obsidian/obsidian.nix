@@ -39,7 +39,8 @@ in {
       Some individual mappings have separate options.
       Use exposed `Obsidian` commands and the standard keymaps API for others.
     '')
-    (mkRemovedOptionModule (setupPath ++ ["open_app_foreground"]) "Removed upstream.")
+    # TODO: are these useful?
+    # (mkRemovedOptionModule (setupPath ++ ["open_app_foreground"]) "Removed upstream.")
 
     (renamedSetupOption ["daily-notes" "folder"] ["daily_notes" "folder"])
     (renamedSetupOption ["daily-notes" "date-format"] ["daily_notes" "date_format"])
