@@ -47,10 +47,11 @@ in {
     (renamedSetupOption ["completion"] ["completion"])
 
     # Some nested options may be renamed/removed as well.
-    (mkRenamedOptionModule (setupPath ++ ["note_frontmatter_func"]) (setupPath ++ ["frontmatter" "func"]))
-    (mkRenamedOptionModule (setupPath ++ ["image_name_func"]) (setupPath ++ ["attachments" "image_name_func"]))
-    (mkRenamedOptionModule (setupPath ++ ["user_advanced_uri"]) (setupPath ++ ["open" "user_advanced_uri"]))
+    # (mkRenamedOptionModule (setupPath ++ ["note_frontmatter_func"]) (setupPath ++ ["frontmatter" "func"]))
+    # (mkRenamedOptionModule (setupPath ++ ["image_name_func"]) (setupPath ++ ["attachments" "image_name_func"]))
+    # (mkRenamedOptionModule (setupPath ++ ["user_advanced_uri"]) (setupPath ++ ["open" "user_advanced_uri"]))
   ];
+
   options.vim.notes = {
     obsidian = {
       enable = mkEnableOption ''
