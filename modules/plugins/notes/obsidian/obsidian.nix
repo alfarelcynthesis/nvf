@@ -9,47 +9,33 @@
   inherit (lib.nvim.types) mkPluginSetupOption;
 in {
   imports = let
-    setupPath = ["vim" "notes" "obsidian" "setupOpts"];
-
     renamedSetupOption = oldPath: newPath:
       mkRenamedOptionModule
       (["vim" "notes" "obsidian"] ++ oldPath)
-      (setupPath ++ newPath);
-
-    removedSingleDirInstructions = ''
-      `obsidian.nvim` has migrated to the `setupOpts.workspaces` option to support multiple vaults.
-
-      To continue using a single vault, set:
-
-      ```nix
-      {
-        obsidian.setupOpts.workspaces = [
-          {
-            name = "any-string";
-            path = "~/old/dir/path/value";
-          }
-        ];
-      }
-      ```
-    '';
+      (["vim" "notes" "obsidian" "setupOpts"] ++ newPath);
   in [
-    (mkRemovedOptionModule ["vim" "notes" "obsidian" "dir"] removedSingleDirInstructions)
-    # TODO: are these useful?
-    # (mkRemovedOptionModule (setupPath ++ ["dir"]) removedSingleDirInstructions)
-    # (mkRemovedOptionModule (setupPath ++ ["mappings"]) ''
-    #   Some individual mappings have separate options.
-    #   Use exposed `Obsidian` commands and the standard keymaps API for others.
-    # '')
-    # (mkRemovedOptionModule (setupPath ++ ["open_app_foreground"]) "Removed upstream.")
+    (
+      mkRemovedOptionModule ["vim" "notes" "obsidian" "dir"]
+      ''
+        `obsidian.nvim` has migrated to the `setupOpts.workspaces` option to support multiple vaults with a single interface.
 
+        To continue using a single vault, set:
+
+        ```nix
+        {
+          notes.obsidian.setupOpts.workspaces = [
+            {
+              name = "any-string";
+              path = "~/old/dir/path/value";
+            }
+          ];
+        }
+        ```
+      ''
+    )
     (renamedSetupOption ["daily-notes" "folder"] ["daily_notes" "folder"])
     (renamedSetupOption ["daily-notes" "date-format"] ["daily_notes" "date_format"])
     (renamedSetupOption ["completion"] ["completion"])
-
-    # Some nested options may be renamed/removed as well.
-    # (mkRenamedOptionModule (setupPath ++ ["note_frontmatter_func"]) (setupPath ++ ["frontmatter" "func"]))
-    # (mkRenamedOptionModule (setupPath ++ ["image_name_func"]) (setupPath ++ ["attachments" "image_name_func"]))
-    # (mkRenamedOptionModule (setupPath ++ ["user_advanced_uri"]) (setupPath ++ ["open" "user_advanced_uri"]))
   ];
 
   options.vim.notes = {
@@ -65,12 +51,10 @@ in {
         :: or `vim.g['vim_markdown_folding_level'] = <number>` to set the default folding level.
 
         :: [!note] Completion
-        :: This plugin will automatically use [blink-cmp] (preferred) or [nvim-cmp] for completion.
+        :: This plugin will automatically use [blink-cmp] (preferred) or [nvim-cmp] for completion
       '';
 
       # TODO: test the suggested global options
-
-      # TODO: note as breaking change, options renamed, link the source
 
       # TODO: check option rendering
       # do I need to link plugins?
@@ -79,28 +63,30 @@ in {
       # TODO: make sure this actually builds, options work etc.
 
       setupOpts = mkPluginSetupOption "obsidian.nvim" {
-        # TODO: docs say it'll disable itself automatically, check if this is true
-        ui.enable = let
-          markdownExtensions = config.vim.languages.markdown.extensions;
-        in
-          mkEnableOption "[obsidian.nvim] UI rendering"
-          // {
-            default = !(markdownExtensions.render-markdown-nvim.enable || markdownExtensions.markview-nvim.enable);
-            defaultText = "false if render-markdown-nvim or markview-nvim are enabled, otherwise true";
-          };
+        # # TODO: docs say it'll disable itself automatically, check if this is true
+        # ui.enable = let
+        #   markdownExtensions = config.vim.languages.markdown.extensions;
+        # in
+        #   mkEnableOption "[obsidian.nvim] UI rendering"
+        #   // {
+        #     default = !(markdownExtensions.render-markdown-nvim.enable || markdownExtensions.markview-nvim.enable);
+        #     defaultText = "false if render-markdown-nvim or markview-nvim are enabled, otherwise true";
+        #   };
 
-        # The plugin doesn't choose or detect these, but it's a good default to use an enabled plugin.
+        # The plugin doesn't choose or detect this.
+        # It's a good default to use an enabled plugin.
         picker.name = mkOption {
-          type = nullOr (enum ["snacks" "mini" "telescope" "fzf_lua"]);
+          # From https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua
+          type = nullOr (enum ["snacks.pick" "mini.pick" "telescope.nvim" "fzf-lua"]);
           default =
             if config.vim.utility.snacks-nvim.setupOpts.picker.enable or false
-            then "snacks"
+            then "snacks.pick"
             else if config.vim.mini.pick.enable
-            then "mini"
+            then "mini.pick"
             else if config.vim.telescope.enable
-            then "telescope"
+            then "telescope.nvim"
             else if config.vim.fzf-lua.enable
-            then "fzf_lua"
+            then "fzf-lua"
             else null;
           defaultText = ''
             One of "snacks", "mini", "telescope", "fzf_lua", or null based on whether they are enabled and in that order.
