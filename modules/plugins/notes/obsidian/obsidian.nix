@@ -70,14 +70,14 @@ in {
         #   };
 
         # The plugin doesn't choose or detect this.
-        picker.name = mkOption {
-          # From https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua
-          type = nullOr (enum ["snacks.pick" "mini.pick" "telescope.nvim" "fzf-lua"]);
-          default = null;
-          defaultText = ''
-            One of "snacks", "mini", "telescope", "fzf_lua", or null based on whether they are enabled and in that order.
-          '';
-        };
+        # picker.name = mkOption {
+        #   # From https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua
+        #   type = nullOr (enum ["snacks.pick" "mini.pick" "telescope.nvim" "fzf-lua"]);
+        #   default = null;
+        #   defaultText = ''
+        #     One of "snacks", "mini", "telescope", "fzf_lua", or null based on whether they are enabled and in that order.
+        #   '';
+        # };
       };
     };
   };
