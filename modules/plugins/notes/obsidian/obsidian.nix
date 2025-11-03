@@ -79,7 +79,7 @@ in {
           # From https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua
           type = nullOr (enum ["snacks.pick" "mini.pick" "telescope.nvim" "fzf-lua"]);
           default =
-            if config.vim.utility.snacks-nvim.setupOpts.picker.enable or false
+            if (config.vim.utility.snacks-nvim.setupOpts.picker.enabled or false)
             then "snacks.pick"
             else if config.vim.mini.pick.enable
             then "mini.pick"
