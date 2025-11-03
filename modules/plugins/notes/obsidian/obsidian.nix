@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib.options) mkEnableOption mkOption;
   inherit (lib.types) enum nullOr;
   inherit (lib.modules) mkRenamedOptionModule mkRemovedOptionModule;
@@ -74,20 +70,10 @@ in {
         #   };
 
         # The plugin doesn't choose or detect this.
-        # It's a good default to use an enabled plugin.
         picker.name = mkOption {
           # From https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua
           type = nullOr (enum ["snacks.pick" "mini.pick" "telescope.nvim" "fzf-lua"]);
-          default =
-            if (config.vim.utility.snacks-nvim.setupOpts.picker.enabled or false)
-            then "snacks.pick"
-            else if config.vim.mini.pick.enable
-            then "mini.pick"
-            else if config.vim.telescope.enable
-            then "telescope.nvim"
-            else if config.vim.fzf-lua.enable
-            then "fzf-lua"
-            else null;
+          default = null;
           defaultText = ''
             One of "snacks", "mini", "telescope", "fzf_lua", or null based on whether they are enabled and in that order.
           '';
