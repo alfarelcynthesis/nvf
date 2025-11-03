@@ -1,6 +1,5 @@
 {lib, ...}: let
-  inherit (lib.options) mkEnableOption mkOption;
-  inherit (lib.types) enum nullOr;
+  inherit (lib.options) mkEnableOption;
   inherit (lib.modules) mkRenamedOptionModule mkRemovedOptionModule;
   inherit (lib.nvim.types) mkPluginSetupOption;
 in {
@@ -36,19 +35,31 @@ in {
 
   options.vim.notes = {
     obsidian = {
-      enable = mkEnableOption ''
-        plugins to compliment the Obsidian markdown editor [obsidian.nvim].
+      enable =
+        mkEnableOption ""
+        // {
+          description = ''
+            Whether to enable plugins to compliment the Obsidian markdown editor [obsidian.nvim].
 
-        :: [!tip] Folding
-        :: This plugin depends on [vim-markdown] which by default folds headings,
-        :: including outside of workspaces/vaults.
-        ::
-        :: Set `vim.g['vim_markdown_folding_disable'] = 1` to disable automatic folding,
-        :: or `vim.g['vim_markdown_folding_level'] = <number>` to set the default folding level.
+            :: [!tip] Folding
+            :: This plugin depends on [vim-markdown] which by default folds headings,
+            :: including outside of workspaces/vaults.
+            ::
+            :: Set `vim.g['vim_markdown_folding_disable'] = 1` to disable automatic folding,
+            :: or `vim.g['vim_markdown_folding_level'] = <number>` to set the default folding level.
 
-        :: [!note] Completion
-        :: This plugin will automatically use [blink-cmp] (preferred) or [nvim-cmp] for completion
-      '';
+            :: [!note] Completion
+            :: This plugin will automatically use [blink-cmp] (preferred) or [nvim-cmp] for completion.
+
+            :: [!note] Picker
+            :: nvf will choose snacks.picker, mini.pick, telescope, or fzf-lua as the picker
+            :: if they are enabled, in that order.
+
+            :: [!note] UI
+            :: The `ui` config module is automatically disabled if `render-markdown-nvim` or
+            :: `markview-nvim` are enabled.
+          '';
+        };
 
       # TODO: test the suggested global options
 
@@ -56,29 +67,9 @@ in {
       # do I need to link plugins?
       # does :: [!note] work?
 
-      # TODO: make sure this actually builds, options work etc.
+      # TODO: make sure works
 
-      setupOpts = mkPluginSetupOption "obsidian.nvim" {
-        # # TODO: docs say it'll disable itself automatically, check if this is true
-        # ui.enable = let
-        #   markdownExtensions = config.vim.languages.markdown.extensions;
-        # in
-        #   mkEnableOption "[obsidian.nvim] UI rendering"
-        #   // {
-        #     default = !(markdownExtensions.render-markdown-nvim.enable || markdownExtensions.markview-nvim.enable);
-        #     defaultText = "false if render-markdown-nvim or markview-nvim are enabled, otherwise true";
-        #   };
-
-        # The plugin doesn't choose or detect this.
-        # picker.name = mkOption {
-        #   # From https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua
-        #   type = nullOr (enum ["snacks.pick" "mini.pick" "telescope.nvim" "fzf-lua"]);
-        #   default = null;
-        #   defaultText = ''
-        #     One of "snacks", "mini", "telescope", "fzf_lua", or null based on whether they are enabled and in that order.
-        #   '';
-        # };
-      };
+      setupOpts = mkPluginSetupOption "obsidian.nvim" {};
     };
   };
 }

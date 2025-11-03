@@ -308,9 +308,6 @@
 - Upgrade [obsidian.nvim] to use a maintained fork, instead of the unmaintained
   upstream.
   - Supports [blink.cmp] and completion plugin autodetection.
-  - Detects if [render-markdown.nvim] or [markview.nvim] are enabled and
-    disables `ui` module to prevent conflicts. This no longer needs to be done
-    manually.
   - Supports various pickers for prompts, including [snacks.nvim]'s
     `snacks.picker`, [mini.nvim]'s `mini.pick`, `telescope`, and [fzf-lua]. nvf
     will now pick one of these (in that order) if they are enabled.
@@ -341,6 +338,10 @@
     - Mappings are now expected to be set using the built-in Neovim APIs,
       managed by `vim.keymaps` in nvf, instead of `mappings` options.
     - Some option defaults have changed.
+  - Supposedly detects if [render-markdown.nvim] or [markview.nvim] are enabled
+    and disables the `ui` module to prevent conflicts. `render-markdown.nvim`,
+    at least in testing, still has conflicts unless manually disabled, so nvf
+    will disable `ui.enable` explicitly if either is enabled.
 
 [TheColorman](https://github.com/TheColorman):
 
