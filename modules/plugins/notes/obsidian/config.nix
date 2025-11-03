@@ -28,36 +28,36 @@ in {
       '';
 
       # Don't set option unless we have a useful setting for it.
-      notes.obsidian.setupOpts = let
-        snacks = config.vim.utility.snacks-nvim.setupOpts.picker.enabled or false;
-        mini = config.vim.mini.pick.enable;
-        telescope = config.vim.telescope.enable;
-        fzf-lua = config.vim.fzf-lua.enable;
-      in
-        mkIf (snacks || mini || telescope || fzf-lua) {
-          picker.name =
-            if snacks
-            then "snacks.pick"
-            else if mini
-            then "mini.pick"
-            else if telescope
-            then "telescope.nvim"
-            else if fzf-lua
-            then "fzf-lua"
-            # NOTE: Shouldn't happen
-            else null;
-        };
-
-      # Resolve markdown image paths in the vault.
-      utility.snacks-nvim.setupOpts = mkIf (config.vim.utility.snacks-nvim.setupOpts.image.enabled or false) {
-        image.resolve = mkLuaInline ''
-          function(path, src)
-            if require("obsidian.api").path_is_note(path) then
-              return require("obsidian.api").resolve_image_path(src)
-            end
-          end
-        '';
-      };
+      # notes.obsidian.setupOpts = let
+      #   snacks = config.vim.utility.snacks-nvim.setupOpts.picker.enabled or false;
+      #   mini = config.vim.mini.pick.enable;
+      #   telescope = config.vim.telescope.enable;
+      #   fzf-lua = config.vim.fzf-lua.enable;
+      # in
+      #   mkIf (snacks || mini || telescope || fzf-lua) {
+      #     picker.name =
+      #       if snacks
+      #       then "snacks.pick"
+      #       else if mini
+      #       then "mini.pick"
+      #       else if telescope
+      #       then "telescope.nvim"
+      #       else if fzf-lua
+      #       then "fzf-lua"
+      #       # NOTE: Shouldn't happen
+      #       else null;
+      #   };
+      #
+      # # Resolve markdown image paths in the vault.
+      # utility.snacks-nvim.setupOpts = mkIf (config.vim.utility.snacks-nvim.setupOpts.image.enabled or false) {
+      #   image.resolve = mkLuaInline ''
+      #     function(path, src)
+      #       if require("obsidian.api").path_is_note(path) then
+      #         return require("obsidian.api").resolve_image_path(src)
+      #       end
+      #     end
+      #   '';
+      # };
     };
   };
 }
