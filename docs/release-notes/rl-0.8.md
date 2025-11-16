@@ -72,7 +72,6 @@
 
 - Add [](#opt-vim.lsp.lightbulb.autocmd.enable) for manually managing the
   previously managed lightbulb autocommand.
-
   - A warning will occur if [](#opt-vim.lsp.lightbulb.autocmd.enable) and
     `vim.lsp.lightbulb.setupOpts.autocmd.enabled` are both set at the same time.
     Pick only one.
@@ -144,6 +143,9 @@
 - Use conform over custom autocmds for LSP format on save
 - Move LSP keybinds and other related plugin integrations into an LspAttach
   event.
+- Allow multiple formatters in language modules.
+- Fixed `prettier` in astro and svelte, and removed `prettierd` due to high
+  complexity that would be needed to support it.
 
 [diniamo](https://github.com/diniamo):
 
@@ -541,6 +543,7 @@
 
 - fix broken `neorg` grammars
 - remove obsolete warning in the `otter` module
+- add mainProgram attribute to vala language server wrapper
 
 [JManch](https://github.com/JManch):
 
@@ -605,6 +608,10 @@
 - Add [nvim-highlight-colors] plugin in `vim.ui.nvim-highlight-colors` with
   `enable` and `setupOpts`
 
+- Fix [blink.cmp] keymap preset types to allow alternate cmdline, terminal, etc
+  modes to `inherit` the default mode keymaps. This is an option as per the
+  [blink.cmp] docs and is now supported in nvf.
+
 [PartyWumpus](https://github.com/PartyWumpus):
 
 [typst-concealer]: https://github.com/PartyWumpus/typst-concealer
@@ -623,3 +630,9 @@
 [mellow.nvim]: https://github.com/mellow-theme/mellow.nvim
 
 - Add [mellow.nvim] plugin for vim and lualine theme support
+
+[valyntyler](https://github.com/valyntyler):
+
+[emmet-ls]: https://github.com/aca/emmet-ls
+
+- Add [emmet-ls] to `html.lsp.servers`

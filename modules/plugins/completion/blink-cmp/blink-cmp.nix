@@ -13,7 +13,7 @@
     freeformType = attrsOf (listOf (either str luaInline));
     options = {
       preset = mkOption {
-        type = enum ["default" "none" "super-tab" "enter" "cmdline"];
+        type = enum ["inherit" "default" "none" "super-tab" "enter" "cmdline"];
         default = "none";
         description = "keymap presets";
       };
