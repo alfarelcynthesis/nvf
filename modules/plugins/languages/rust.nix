@@ -183,16 +183,16 @@ in {
           ''}
 
               ${optionalString cfg.dap.enable ''
-              dap = {
-                adapter = {
-                  type = "executable",
-                  command = "${cfg.dap.package}/bin/lldb-dap",
-                  name = "rustacean_lldb",
-                },
+            dap = {
+              adapter = {
+                type = "executable",
+                command = "${cfg.dap.package}/bin/lldb-dap",
+                name = "rustacean_lldb",
               },
-            ''}
+            },
+          ''}
             }
-          '';
+        '';
       };
     })
 

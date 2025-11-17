@@ -1,5 +1,5 @@
 {lib}: let
-  inherit (builtins) warn toJSON;
+  inherit (builtins) toJSON;
   inherit (lib.options) mergeEqualOption;
   inherit (lib.lists) singleton;
   inherit (lib.strings) isString stringLength match;
