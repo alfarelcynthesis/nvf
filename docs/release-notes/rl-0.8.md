@@ -635,4 +635,5 @@
 
 [emmet-ls]: https://github.com/aca/emmet-ls
 
+- Enable `languages.ts.format` for `.js` files
 - Add [emmet-ls] to `html.lsp.servers`
