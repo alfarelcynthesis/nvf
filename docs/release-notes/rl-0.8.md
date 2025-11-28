@@ -442,7 +442,7 @@
 
 [aionoid](https://github.com/aionoid):
 
-[avante-nvim]: https://github.com/yetone/avante.nvim
+[avante.nvim]: https://github.com/yetone/avante.nvim
 
 - Fix [render-markdown.nvim] file_types option type to list, to accept merging.
 - Add [avante.nvim] plugin under `vim.assistant.avante-nvim`.
@@ -544,6 +544,7 @@
 - fix broken `neorg` grammars
 - remove obsolete warning in the `otter` module
 - add mainProgram attribute to vala language server wrapper
+- fix `crates-nvim`'s completions by using the in-program lsp
 
 [JManch](https://github.com/JManch):
 
@@ -617,6 +618,14 @@
 [typst-concealer]: https://github.com/PartyWumpus/typst-concealer
 
 - Add inline typst concealing support under `vim.languages.typst` using
+  [typst-concealer].
+
+[KrappRamiro](https://github.com/KrappRamiro):
+
+[phaazon/hop.nvim]: https://github.com/hadronized/hop.nvim
+[smoka7/hop.nvim]: https://github.com/smoka7/hop.nvim
+
+- Migrate [phaazon/hop.nvim] to [smoka7/hop.nvim]
   [typst-concealer].
 
 [simon-wg](https://github.com/simon-wg):
