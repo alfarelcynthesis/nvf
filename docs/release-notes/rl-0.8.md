@@ -626,7 +626,6 @@
 [smoka7/hop.nvim]: https://github.com/smoka7/hop.nvim
 
 - Migrate [phaazon/hop.nvim] to [smoka7/hop.nvim]
-  [typst-concealer].
 
 [simon-wg](https://github.com/simon-wg):
 
