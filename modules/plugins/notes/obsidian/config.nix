@@ -4,6 +4,7 @@
   ...
 }: let
   inherit (lib.modules) mkIf mkMerge;
+  inherit (lib.generators) mkLuaInline;
   inherit (lib.nvim.dag) entryAnywhere;
   inherit (lib.nvim.binds) pushDownDefault;
   inherit (lib.nvim.lua) toLuaObject;
@@ -56,16 +57,17 @@ in {
           (mkIf (render-markdown || markview) {ui.enable = false;})
         ];
 
-      # # Resolve markdown image paths in the vault.
-      # utility.snacks-nvim.setupOpts = mkIf (config.vim.utility.snacks-nvim.setupOpts.image.enabled or false) {
-      #   image.resolve = mkLuaInline ''
-      #     function(path, src)
-      #       if require("obsidian.api").path_is_note(path) then
-      #         return require("obsidian.api").resolve_image_path(src)
-      #       end
-      #     end
-      #   '';
-      # };
+      # Resolve markdown image paths in the vault.
+      # Only actually used by snacks if image.enabled is set to true
+      utility.snacks-nvim.setupOpts = mkIf config.vim.utility.snacks-nvim.enable {
+        image.resolve = mkLuaInline ''
+          function(path, src)
+            if require("obsidian.api").path_is_note(path) then
+              return require("obsidian.api").resolve_image_path(src)
+            end
+          end
+        '';
+      };
     };
   };
 }

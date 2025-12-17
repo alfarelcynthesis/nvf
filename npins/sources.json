@@ -2118,10 +2118,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v3.14.3",
-      "revision": "1966e6c0bd43fbb213cf2693a1167dcc544d6c3a",
-      "url": "https://api.github.com/repos/obsidian-nvim/obsidian.nvim/tarball/v3.14.3",
-      "hash": "18nikf0gafn91rys7wvr35105qaka3r86k491iqd4f9zd48gshnc"
+      "version": "v3.14.8",
+      "revision": "f06ad7aa793b8111d3b98a452c5db21edb7e4f01",
+      "url": "https://api.github.com/repos/obsidian-nvim/obsidian.nvim/tarball/v3.14.8",
+      "hash": "0xpb8hiz3gdm4ka9lqjwibqrf6q5hpyc7wwx1v9azwzlm4cg9bwf"
     },
     "oil-git-status.nvim": {
       "type": "Git",

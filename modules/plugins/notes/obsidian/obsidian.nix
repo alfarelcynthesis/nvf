@@ -41,33 +41,15 @@ in {
           description = ''
             Whether to enable plugins to compliment the Obsidian markdown editor [obsidian.nvim].
 
-            :: [!tip] Folding
-            :: This plugin depends on [vim-markdown] which by default folds headings,
-            :: including outside of workspaces/vaults.
-            ::
-            :: Set `vim.g['vim_markdown_folding_disable'] = 1` to disable automatic folding,
-            :: or `vim.g['vim_markdown_folding_level'] = <number>` to set the default folding level.
+            This plugin depends on [vim-markdown] which by default folds headings, including outside of workspaces/vaults.
+            Set `vim.g['vim_markdown_folding_disable'] = 1` to disable automatic folding,
+            or `vim.g['vim_markdown_folding_level'] = <number>` to set the default folding level.
 
-            :: [!note] Completion
-            :: This plugin will automatically use [blink-cmp] (preferred) or [nvim-cmp] for completion.
+            nvf will choose snacks.picker, mini.pick, telescope, or fzf-lua as the picker if they are enabled, in that order.
 
-            :: [!note] Picker
-            :: nvf will choose snacks.picker, mini.pick, telescope, or fzf-lua as the picker
-            :: if they are enabled, in that order.
-
-            :: [!note] UI
-            :: The `ui` config module is automatically disabled if `render-markdown-nvim` or
-            :: `markview-nvim` are enabled.
+            The `ui` config module is automatically disabled if `render-markdown-nvim` or `markview-nvim` are enabled.
           '';
         };
-
-      # TODO: test the suggested global options
-
-      # TODO: check option rendering
-      # do I need to link plugins?
-      # does :: [!note] work?
-
-      # TODO: make sure works
 
       setupOpts = mkPluginSetupOption "obsidian.nvim" {};
     };
