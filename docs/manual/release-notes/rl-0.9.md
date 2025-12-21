@@ -4,7 +4,8 @@
 
 [suimong](https://github.com/suimong):
 
-- Fix `vim.tabline.nvimBufferline` where `setupOpts.options.hover` requires `vim.opt.mousemoveevent` to be set.
+- Fix `vim.tabline.nvimBufferline` where `setupOpts.options.hover` requires
+  `vim.opt.mousemoveevent` to be set.
 
 [alfarel](https://github.com/alfarelcynthesis):
 
