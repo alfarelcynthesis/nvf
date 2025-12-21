@@ -1,7 +1,7 @@
-# Home-Manager Module {#ch-hm-module}
+## Home Manager Module {#ch-hm-module}
 
-The home-manager module allows us to customize the different `vim` options from
-inside the home-manager configuration without having to call for the wrapper
+The Home Manager module allows us to customize the different `vim` options from
+inside the Home Manager configuration without having to call for the wrapper
 yourself. It is the recommended way to use **nvf** alongside the NixOS module
 depending on your needs.
 
@@ -19,7 +19,7 @@ To use **nvf** with flakes, we first need to add the input to our `flake.nix`.
 # flake.nix
 {
   inputs = {
-    # Required, nvf works best and only directly supports flakes
+    # nvf works best with and only directly supports flakes
     nvf = {
       url = "github:NotAShelf/nvf";
       # You can override the input nixpkgs to follow your system's
@@ -37,8 +37,8 @@ Followed by importing the home-manager module somewhere in your configuration.
 
 ```nix
 {
-  # Assuming "nvf" is in your inputs and inputs is in the argument set.
-  # See example installation below
+  # Assuming nvf is in your inputs and inputs is in the argument set.
+  # See example installation below.
   imports = [ inputs.nvf.homeManagerModules.default ];
 }
 ```

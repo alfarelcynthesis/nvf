@@ -1,11 +1,11 @@
-# NixOS Module {#ch-nixos-module}
+## NixOS Module {#ch-nixos-module}
 
 The NixOS module allows us to customize the different `vim` options from inside
 the NixOS configuration without having to call for the wrapper yourself. It is
 the recommended way to use **nvf** alongside the home-manager module depending
 on your needs.
 
-## With Flakes {#sec-nixos-flakes}
+### With Flakes {#sec-nixos-flakes}
 
 ```{=include=}
 flakes.md
@@ -19,7 +19,7 @@ To use **nvf** with flakes, we first need to add the input to our `flake.nix`.
 # flake.nix
 {
   inputs = {
-    # Required, nvf works best and only directly supports flakes
+    # nvf works best with and only directly supports flakes
     nvf = {
       url = "github:NotAShelf/nvf";
       # You can override the input nixpkgs to follow your system's
@@ -37,8 +37,8 @@ Followed by importing the NixOS module somewhere in your configuration.
 
 ```nix
 {
-  # assuming nvf is in your inputs and inputs is in the argset
-  # see example below
+  # Assuming nvf is in your inputs and inputs is in the argument set.
+  # See example below.
   imports = [ inputs.nvf.nixosModules.default ];
 }
 ```
@@ -72,7 +72,6 @@ configure **nvf**.
 {
   programs.nvf = {
     enable = true;
-    
     # Your settings need to go into the settings attribute set
     # most settings are documented in the appendix
     settings = {
@@ -122,9 +121,6 @@ in {
 }
 ```
 
-[npins]: https://github.com/andir/npins
-[niv]: https://github.com/nmattia/niv
-
 ::: {.tip}
 
 Nix2 does not have a builtin lockfile mechanism like flakes. As such you must
@@ -135,3 +131,6 @@ your use case. Alternatively, look into the aforementioned projects for more
 convenient dependency management mechanisms.
 
 :::
+
+[niv]: https://github.com/nmattia/niv
+[npins]: https://github.com/andir/npins
