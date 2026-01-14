@@ -2,6 +2,10 @@
 
 ## Breaking changes
 
+- Nixpkgs has merged a fully incompatible rewrite of
+  `vimPlugins.nvim-treesitter`. Namely, it changes from the frozen `master`
+  branch to the new main branch. This change removes incremental selections, so
+  it is no longer available.
 - [obsidian.nvim] now uses a maintained fork which has removed the `dir`
   setting. Use `workspaces` instead:
 
@@ -18,21 +22,55 @@
 
   Some other settings and commands are now deprecated but are still supported.
 
-- [obsidian.nvim] has removed the `setupOpts.mappings` options. Use the built-in
-  Neovim settings (nvf's {option}`vim.keymaps`)
+  - The `setupOpts.mappings` options were also removed. Use the built-in Neovim
+    settings (nvf's {option}`vim.keymaps`)
 
 ## Changelog {#sec-release-0-9-changelog}
+
+[taylrfnt](https://github.com/taylrfnt)
+
+- Introduce a `darwinModule` option for Darwin users. The ergonomics of
+  importing a `nixosModule` into a Darwin flake were less than ideal, and when
+  users fork and update npins, they are prone to encountering errors like the
+  following:
+
+  ```shell
+  (class: "nixos") cannot be imported into a module 
+  evaluation that expects class "darwin".
+  ```
 
 [suimong](https://github.com/suimong):
 
 - Fix `vim.tabline.nvimBufferline` where `setupOpts.options.hover` requires
   `vim.opt.mousemoveevent` to be set.
 
+[thamenato](https://github.com/thamenato):
+
+- Attempt to adapt nvim-treesitter to (breaking) Nixpkgs changes. Some
+  treesitter grammars were changed to prefer `grammarPlugins` over
+  `builtGrammars`.
+
+[jfeo](https://github.com/jfeo):
+
+[ccc.nvim]: https://github.com/uga-rosa/ccc.nvim
+
+- Added [ccc.nvim] option {option}`vim.utility.ccc.setupOpts` with the existing
+  hard-coded options as default values.
+
 [Ring-A-Ding-Ding-Baby](https://github.com/Ring-A-Ding-Ding-Baby):
 
 - Aligned `codelldb` adapter setup with [rustaceanvim]’s built-in logic.
 - Added `languages.rust.dap.backend` option to choose between `codelldb` and
   `lldb-dap` adapters.
+
+[Libadoxon](https://github.com/Libadoxon):
+
+- `toggleterm` open map now also works when in terminal mode
+
+[jtliang24](https://github.com/jtliang24):
+
+- Updated nix language plugin to use pkgs.nixfmt instead of
+  pkgs.nixfmt-rfc-style
 
 [alfarel](https://github.com/alfarelcynthesis):
 
@@ -87,3 +125,19 @@
     {command}`:healthcheck` doesn't know that.
   - Remove [which-key.nvim] `<leader>o` `+Notes` description which did not
     actually correspond to any keybinds.
+
+[pyrox0](https://github.com/pyrox0):
+
+- Added [rumdl](https://github.com/rvben/rumdl) support to `languages.markdown`
+
+- Added [sqruff](https://github.com/quarylabs/sqruff) support to `languages.sql`
+
+- Added [Pyrefly](https://pyrefly.org/) support to `languages.python`
+
+- Added TOML support via {option}`languages.toml` and the
+  [Tombi](https://tombi-toml.github.io/tombi/) language server, linter, and
+  formatter.
+
+[Machshev](https://github.com/machshev):
+
+- Added `ruff` and `ty` LSP support for Python under `programs.python`.

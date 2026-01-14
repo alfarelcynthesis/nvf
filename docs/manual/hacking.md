@@ -53,7 +53,8 @@ Before submitting your pull request, please ensure that:
   with important information
 
 None of those are reasons for a Pull Request to be closed, but it will reduce
-the number of roundtrips required before we can merge your Pull Request.
+the number of "roundtrips", or rather, the back-and-forth required before we can
+merge your Pull Request.
 
 > [!IMPORTANT]
 > If you do not agree with the idea of using Microsoft GitHub for contributions,
@@ -62,7 +63,7 @@ the number of roundtrips required before we can merge your Pull Request.
 >
 > You may send your patches to [@NotAShelf](https://github.com/notashelf) using
 > the public e-mail located on the GitHub page. Though, please remember to
-> adhere to the contributing guidelines strictly as e-mail instroduces a
+> adhere to the contributing guidelines strictly, as e-mail introduces a
 > significant overhead to the communication process.
 
 ## Guidelines {#sec-guidelines}
@@ -387,7 +388,7 @@ generated and opened by typing the following in a shell within a clone of the
 $ nix build .#docs-html
 
 # Open it with a valid browser
-$ xdg-open $PWD/result/share/doc/nvf/index.html
+$ xdg-open $PWD/result/share/doc/index.html
 ```
 
 Additionally, if you are adding new links to the documentation it is **generally

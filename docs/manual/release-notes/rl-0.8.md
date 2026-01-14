@@ -658,7 +658,3 @@
 [JudahZF](https://github.com/JudahZF):
 
 - Added gitFiles mapping option to telescope
-
-[Libadoxon](https://github.com/Libadoxon)
-
-- `toggleterm` open map now also works when in terminal mode
