@@ -45,10 +45,10 @@ in {
           (mkIf (snacks-picker.enable || mini-pick.enable || telescope.enable || fzf-lua.enable) {
             # It doesn't detect/choose this.
             # Some pickers and completion plugins don't get detected correctly by the checkhealth, but they all work.
-            # Values taken from the [config's](https://github.com/obsidian-nvim/obsidian.nvim/blob/main/lua/obsidian/config/init.lua) valid ones.
+            # Values taken from the [config's](https://github.com/obsidian-nvim/obsidian.nvim/blob/42ab815694dd0c52c00aafcbb2bab694036d6c21/lua/obsidian/types.lua#L27) valid ones.
             picker.name =
               if snacks-picker.enable
-              then "snacks.pick"
+              then "snacks.picker"
               else if mini-pick.enable
               then "mini.pick"
               else if telescope.enable
