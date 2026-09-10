@@ -1,15 +1,22 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Known Issues and Quirks</title>
      
+    
     <script>
+      document.documentElement.classList.remove("no-js");
+      document.documentElement.classList.add("js");
       // Apply sidebar state immediately to prevent flash
       (function () {
-        if (localStorage.getItem("sidebar-collapsed") === "true") {
-          document.documentElement.classList.add("sidebar-collapsed");
+        try {
+          if (localStorage.getItem("sidebar-collapsed") === "true") {
+            document.documentElement.classList.add("sidebar-collapsed");
+          }
+        } catch (e) {
+          // localStorage unavailable
         }
       })();
     </script>
@@ -44,7 +51,7 @@
 
         </div>
         
-        <div class="search-container">
+        <div class="search-container js-only">
           <input type="text" id="search-input" placeholder="Search..." />
           <div id="search-results" class="search-results"></div>
         </div>
@@ -52,7 +59,7 @@
       </header>
 
       <div class="layout">
-        <div class="sidebar-toggle" aria-label="Toggle sidebar">
+        <div class="sidebar-toggle js-only" aria-label="Toggle sidebar">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -69,6 +76,7 @@
               <ul>
                 <li><a href="index.html">Introduction</a></li>
 <li><a href="configuring.html">Configuring nvf</a></li>
+<li><a href="faq.html">Frequently Asked Questions</a></li>
 <li><a href="hacking.html">Hacking nvf</a></li>
 <li><a href="tips.html">Helpful Tips</a></li>
 <li><a href="quirks.html">Known Issues and Quirks</a></li>
@@ -103,7 +111,6 @@ possible workarounds that you may apply.</p>
 <p>When working with NodeJS, which is <em>obviously</em> known for its meticulous
 standards, most things are bound to work as expected but some projects, tools
 and settings may fool the default configurations of tools provided by <strong>nvf</strong>.</p>
-<p>If</p>
 <p>If <a href="https://github.com/prettier/eslint-plugin-prettier">eslint-plugin-prettier</a> or similar is included, you might get a situation
 where your Eslint configuration diagnoses your formatting according to its own
 config (usually <code>.eslintrc.js</code>). The issue there is your formatting is made via
